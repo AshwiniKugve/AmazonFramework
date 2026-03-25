@@ -7,6 +7,7 @@ import base.BasePage;
 
 public class HomePage extends BasePage {
 
+	//Added search feature branch
     // Locators
     private By searchBox = By.id("twotabsearchtextbox");
     private By searchBtn = By.id("nav-search-submit-button");
