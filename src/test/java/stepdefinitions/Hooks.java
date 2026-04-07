@@ -22,6 +22,7 @@ public class Hooks extends BaseTest {
 
         if (scenario.isFailed()) {
 
+        	// String path=ScreenshotUtil.captureScreenshot(getDriver(), scenario.getName());
             String path = ScreenshotUtil.captureScreenshot(driver, scenario.getName());
 
             try {
@@ -32,6 +33,6 @@ public class Hooks extends BaseTest {
             }
         }
 
-        tearDown();
+        //tearDown();
     }
 }

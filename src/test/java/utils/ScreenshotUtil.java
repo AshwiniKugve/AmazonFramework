@@ -13,6 +13,9 @@ public class ScreenshotUtil {
         File src = ts.getScreenshotAs(OutputType.FILE);
 
         String path = "screenshots/" + testName + ".png";
+        //   String path = System.getProperty("user.dir") + "/screenshots/" 
+       // + testName + "_" + System.currentTimeMillis() + ".png";
+
 
         try {
             File dest = new File(path);

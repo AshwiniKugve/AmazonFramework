@@ -1,7 +1,7 @@
 package base;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,30 +19,36 @@ public class BasePage {
     }
 
     // Wait for visibility
-    public void waitForVisibility(By locator) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    public void waitForVisibility(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     // Wait for clickable
-    public void waitForClickable(By locator) {
-        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    public void waitForClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
     // Click method
-    public void click(By locator) {
-        waitForClickable(locator);
-        driver.findElement(locator).click();
+    public void click(WebElement element) {
+        waitForClickable(element);
+        element.click();
     }
 
     // SendKeys method
-    public void sendKeys(By locator, String value) {
-        waitForVisibility(locator);
-        driver.findElement(locator).sendKeys(value);
+    public void sendKeys(WebElement element, String value) {
+        waitForVisibility(element);
+        element.clear();
+        element.sendKeys(value);
     }
 
-    // Get text (optional but useful)
-    public String getText(By locator) {
-        waitForVisibility(locator);
-        return driver.findElement(locator).getText();
+    // Get text
+    public String getText(WebElement element) {
+        waitForVisibility(element);
+        return element.getText();
+    }
+
+    // Get page title
+    public String getTitle() {
+        return driver.getTitle();
     }
 }
