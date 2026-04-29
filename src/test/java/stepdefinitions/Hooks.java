@@ -4,17 +4,19 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
-import base.BaseTest;
+import utils.DriverFactory;
 import utils.ScreenshotUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class Hooks extends BaseTest {
+public class Hooks {
+
+    DriverFactory df = new DriverFactory();
 
     @Before
     public void start() {
-        setup();
+        df.initDriver();   // ✅ start browser
     }
 
     @After
@@ -22,8 +24,10 @@ public class Hooks extends BaseTest {
 
         if (scenario.isFailed()) {
 
-        	// String path=ScreenshotUtil.captureScreenshot(getDriver(), scenario.getName());
-            String path = ScreenshotUtil.captureScreenshot(driver, scenario.getName());
+            String path = ScreenshotUtil.captureScreenshot(
+                    DriverFactory.getDriver(), 
+                    scenario.getName()
+            );
 
             try {
                 byte[] file = Files.readAllBytes(Paths.get(path));
@@ -33,6 +37,6 @@ public class Hooks extends BaseTest {
             }
         }
 
-        //tearDown();
+        DriverFactory.quitDriver();   // ✅ close browser (VERY IMPORTANT)
     }
 }
